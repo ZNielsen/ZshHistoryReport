@@ -73,7 +73,7 @@ fn main() {
         let runtime: u64 = time_cmd[0].parse().expect("Could not parse runtime");
         let runcmd = time_cmd[1];
         max_cmd_len = std::cmp::max(max_cmd_len, runcmd.len() as u32);
-        if runtime != 0 {
+        if runtime > 0 {
             timecmds.push( TimeCmd {
                 time: runtime,
                 cmd: runcmd.to_owned(),
@@ -95,10 +95,10 @@ fn main() {
         }
         print!(": ");
         if time.num_minutes() > 0 {
-            print!("{:02} min, {:02} sec", time.num_minutes(), time.num_seconds()/60);
+            print!("{:02} min, {:02} sec", time.num_minutes(), time.num_seconds() % 60);
         }
         else {
-            print!("        {:02} sec", time.num_seconds()/60);
+            print!("        {:02} sec", time.num_seconds() % 60);
         }
         println!();
     }
