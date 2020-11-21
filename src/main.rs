@@ -72,8 +72,8 @@ fn main() {
         let time_cmd: Vec<&str> = info.split(";").collect();
         let runtime: u64 = time_cmd[0].parse().expect("Could not parse runtime");
         let runcmd = time_cmd[1];
-        max_cmd_len = std::cmp::max(max_cmd_len, runcmd.len() as u32);
         if runtime > 0 {
+            max_cmd_len = std::cmp::max(max_cmd_len, runcmd.len() as u32);
             timecmds.push( TimeCmd {
                 time: runtime,
                 cmd: runcmd.to_owned(),
