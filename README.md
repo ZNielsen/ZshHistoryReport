@@ -1,4 +1,4 @@
 # ZshHistoryReport
 Gives some insight into long-running commands.
 
-Done quickly as a hack-day item -- gritty, but gets the job done.
+Done in an hour as a hack-day item -- gritty, but gets the job done.
