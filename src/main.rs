@@ -82,6 +82,8 @@ fn main() {
     }
 
     // Sort and display
+    let mut has_hours = false;
+    let mut has_min = false;
     timecmds.sort_by(|b, a| a.partial_cmp(b).unwrap());
     println!("Command Time Report:");
     for timecmd in timecmds {
@@ -94,11 +96,22 @@ fn main() {
             print!(".");
         }
         print!(": ");
-        if time.num_minutes() > 0 {
+        if time.num_hours() > 0 {
+            has_hours = true;
+            print!("{:02} hours, {:02} min, {:02} sec",
+                time.num_hours(),
+                time.num_minutes() % 24,
+                time.num_seconds() % 60);
+        }
+        else if time.num_minutes() > 0 {
+            if has_hours { print!(".........."); }
+            has_min = true;
             print!("{:02} min, {:02} sec", time.num_minutes(), time.num_seconds() % 60);
         }
         else {
-            print!("        {:02} sec", time.num_seconds() % 60);
+            if has_hours { print!(".........."); }
+            if has_min { print!("........"); }
+            print!("{:02} sec", time.num_seconds() % 60);
         }
         println!();
     }
